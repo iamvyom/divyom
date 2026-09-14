@@ -170,34 +170,24 @@ function generatePDF() {
     doc.setLineWidth(0.5);
     doc.rect(13, 13, 184, 271);
 
-    // Ornamental top design
-    doc.setFontSize(16);
-    doc.setTextColor(...gold);
-    doc.text('*', 105, 25, { align: 'center' });
-
     // Title
     doc.setFontSize(32);
     doc.setTextColor(...burgundy);
     doc.setFont('helvetica', 'bold');
-    doc.text('Divya & Vyom', 105, 38, { align: 'center' });
+    doc.text('Divya & Vyom', 105, 32, { align: 'center' });
 
     // Subtitle
     doc.setFontSize(12);
     doc.setTextColor(...roseGold);
     doc.setFont('helvetica', 'italic');
-    doc.text('request the pleasure of your company', 105, 48, { align: 'center' });
+    doc.text('request the pleasure of your company', 105, 43, { align: 'center' });
 
     // Decorative line
     doc.setDrawColor(...gold);
     doc.setLineWidth(0.8);
-    doc.line(50, 55, 160, 55);
+    doc.line(50, 52, 160, 52);
 
-    // Small ornament on line
-    doc.setFontSize(10);
-    doc.setTextColor(...gold);
-    doc.text('*', 105, 56.5, { align: 'center' });
-
-    let yPos = 70;
+    let yPos = 68;
 
     // Events data
     const events = [
@@ -288,17 +278,11 @@ function generatePDF() {
         }
     });
 
-    // Bottom ornament
-    yPos = 268;
-    doc.setFontSize(16);
-    doc.setTextColor(...gold);
-    doc.text('*', 105, yPos, { align: 'center' });
-
     // Footer
     doc.setFontSize(10);
     doc.setTextColor(...charcoal);
     doc.setFont('helvetica', 'italic');
-    doc.text('We look forward to celebrating with you', 105, 278, { align: 'center' });
+    doc.text('We look forward to celebrating with you', 105, 275, { align: 'center' });
 
     // Save the PDF
     doc.save('Divya-Vyom-Wedding-Invitation.pdf');
