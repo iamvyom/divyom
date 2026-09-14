@@ -878,6 +878,11 @@ section {
         padding: 60px 0;
     }
 
+    /* Hide background image on mobile - causes distortion */
+    .section-bg-image {
+        display: none;
+    }
+
     .events-grid {
         grid-template-columns: 1fr;
         gap: 20px;
