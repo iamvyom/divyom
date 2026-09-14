@@ -158,23 +158,46 @@ function generatePDF() {
     // Set colors
     const burgundy = [128, 0, 32];
     const roseGold = [183, 110, 121];
+    const gold = [212, 175, 55];
     const charcoal = [44, 44, 44];
+    const lightGray = [107, 107, 107];
+
+    // Add decorative border
+    doc.setDrawColor(...roseGold);
+    doc.setLineWidth(1.5);
+    doc.rect(10, 10, 190, 277);
+
+    doc.setLineWidth(0.5);
+    doc.rect(13, 13, 184, 271);
+
+    // Ornamental top design
+    doc.setFontSize(20);
+    doc.setTextColor(...gold);
+    doc.text('❖', 105, 25, { align: 'center' });
 
     // Title
-    doc.setFontSize(28);
+    doc.setFontSize(32);
     doc.setTextColor(...burgundy);
-    doc.text('Divya & Vyom', 105, 25, { align: 'center' });
+    doc.setFont('helvetica', 'bold');
+    doc.text('Divya & Vyom', 105, 38, { align: 'center' });
 
-    doc.setFontSize(14);
+    // Subtitle
+    doc.setFontSize(12);
     doc.setTextColor(...roseGold);
-    doc.text('Wedding Invitation', 105, 35, { align: 'center' });
+    doc.setFont('helvetica', 'italic');
+    doc.text('request the pleasure of your company', 105, 48, { align: 'center' });
 
     // Decorative line
-    doc.setDrawColor(...roseGold);
-    doc.setLineWidth(0.5);
-    doc.line(60, 42, 150, 42);
+    doc.setDrawColor(...gold);
+    doc.setLineWidth(0.8);
+    doc.line(50, 55, 160, 55);
 
-    let yPos = 55;
+    // Small ornaments on line
+    doc.setFontSize(8);
+    doc.setTextColor(...gold);
+    doc.text('❖', 105, 56, { align: 'center' });
+
+    let yPos = 70;
 
     // Events data
     const events = [
@@ -197,7 +220,8 @@ function generatePDF() {
             date: '03 December 2026',
             time: '8:00 PM onwards',
             venue: 'Virasat The Hotel by Triveni Grand',
-            mapUrl: 'https://maps.app.goo.gl/UJqbqB1jCZ6QDHg57'
+            mapUrl: 'https://maps.app.goo.gl/UJqbqB1jCZ6QDHg57',
+            isMain: true
         },
         {
             name: 'Reception',
@@ -210,53 +234,84 @@ function generatePDF() {
 
     // Add each event
     events.forEach((event, index) => {
-        doc.setFontSize(16);
+        // Event box background (subtle)
+        if (event.isMain) {
+            doc.setFillColor(250, 245, 240);
+            doc.rect(18, yPos - 5, 174, 38, 'F');
+        }
+
+        // Event name
+        doc.setFontSize(14);
         doc.setTextColor(...burgundy);
-        doc.text(event.name, 20, yPos);
+        doc.setFont('helvetica', 'bold');
+        doc.text(event.name, 105, yPos, { align: 'center' });
 
-        doc.setFontSize(11);
+        // Event details
+        doc.setFontSize(10);
         doc.setTextColor(...charcoal);
-        doc.text(`Date: ${event.date}`, 25, yPos + 8);
-        doc.text(`Time: ${event.time}`, 25, yPos + 15);
-        doc.text(`Venue: ${event.venue}`, 25, yPos + 22);
+        doc.setFont('helvetica', 'normal');
 
-        // Add map link as clickable
+        doc.text('📅', 25, yPos + 8);
+        doc.text(event.date, 35, yPos + 8);
+
+        doc.text('🕐', 25, yPos + 15);
+        doc.text(event.time, 35, yPos + 15);
+
+        doc.text('📍', 25, yPos + 22);
+        doc.setFont('helvetica', 'italic');
+        doc.text(event.venue, 35, yPos + 22, { maxWidth: 150 });
+
+        // Map link
         doc.setTextColor(...roseGold);
-        doc.textWithLink('View on Google Maps', 25, yPos + 29, { url: event.mapUrl });
+        doc.setFont('helvetica', 'normal');
+        doc.textWithLink('View Location', 35, yPos + 29, { url: event.mapUrl });
 
-        yPos += 45;
+        // Baraat info after Wedding
+        if (event.isMain) {
+            doc.setFontSize(9);
+            doc.setTextColor(...lightGray);
+            doc.setFont('helvetica', 'italic');
+            doc.text('The Baraat will start from', 35, yPos + 35);
+            doc.setTextColor(...roseGold);
+            doc.textWithLink('Hotel Kalevam', 85, yPos + 35, { url: 'https://maps.app.goo.gl/pYv4E5acdpbmrbwJ7' });
+            doc.setTextColor(...lightGray);
+            doc.text('at 7:00 PM', 110, yPos + 35);
+        }
 
-        // Add page break if needed
-        if (yPos > 250 && index < events.length - 1) {
-            doc.addPage();
-            yPos = 20;
+        yPos += event.isMain ? 50 : 42;
+
+        // Divider line between events
+        if (index < events.length - 1) {
+            doc.setDrawColor(...gold);
+            doc.setLineWidth(0.3);
+            doc.line(30, yPos - 5, 180, yPos - 5);
         }
     });
 
-    // Add Baraat info after Wedding event
-    yPos = 55 + (45 * 2) + 35; // Position after wedding event
-    doc.setFontSize(10);
-    doc.setTextColor(...charcoal);
-    doc.text('The Baraat will start from Hotel Kalevam at 7:00 PM', 25, yPos);
-    doc.setTextColor(...roseGold);
-    doc.textWithLink('(View Hotel Kalevam)', 25, yPos + 6, { url: 'https://maps.app.goo.gl/pYv4E5acdpbmrbwJ7' });
+    // Bottom ornament
+    yPos = 268;
+    doc.setFontSize(20);
+    doc.setTextColor(...gold);
+    doc.text('❖', 105, yPos, { align: 'center' });
 
     // Footer
     doc.setFontSize(10);
     doc.setTextColor(...charcoal);
-    doc.text('We look forward to celebrating with you', 105, 280, { align: 'center' });
+    doc.setFont('helvetica', 'italic');
+    doc.text('We look forward to celebrating with you', 105, 278, { align: 'center' });
 
     // Save the PDF
     doc.save('Divya-Vyom-Wedding-Invitation.pdf');
 
     // Visual feedback
-    const originalText = document.getElementById('downloadPDF').innerHTML;
-    document.getElementById('downloadPDF').innerHTML = '<span>✓ Downloaded!</span>';
-    document.getElementById('downloadPDF').style.background = '#4CAF50';
+    const button = document.getElementById('downloadPDF');
+    const originalHTML = button.innerHTML;
+    button.innerHTML = '<span>✓ Downloaded!</span>';
+    button.style.opacity = '0.8';
 
     setTimeout(() => {
-        document.getElementById('downloadPDF').innerHTML = originalText;
-        document.getElementById('downloadPDF').style.background = '';
+        button.innerHTML = originalHTML;
+        button.style.opacity = '1';
     }, 2000);
 }
 
