@@ -171,9 +171,9 @@ function generatePDF() {
     doc.rect(13, 13, 184, 271);
 
     // Ornamental top design
-    doc.setFontSize(20);
+    doc.setFontSize(16);
     doc.setTextColor(...gold);
-    doc.text('❖', 105, 25, { align: 'center' });
+    doc.text('*', 105, 25, { align: 'center' });
 
     // Title
     doc.setFontSize(32);
@@ -192,10 +192,10 @@ function generatePDF() {
     doc.setLineWidth(0.8);
     doc.line(50, 55, 160, 55);
 
-    // Small ornaments on line
-    doc.setFontSize(8);
+    // Small ornament on line
+    doc.setFontSize(10);
     doc.setTextColor(...gold);
-    doc.text('❖', 105, 56, { align: 'center' });
+    doc.text('*', 105, 56.5, { align: 'center' });
 
     let yPos = 70;
 
@@ -234,7 +234,7 @@ function generatePDF() {
 
     // Add each event
     events.forEach((event, index) => {
-        // Event box background (subtle)
+        // Event box background (subtle) for main event
         if (event.isMain) {
             doc.setFillColor(250, 245, 240);
             doc.rect(18, yPos - 5, 174, 38, 'F');
@@ -246,32 +246,32 @@ function generatePDF() {
         doc.setFont('helvetica', 'bold');
         doc.text(event.name, 105, yPos, { align: 'center' });
 
-        // Event details
+        // Event details with text labels instead of emojis
         doc.setFontSize(10);
         doc.setTextColor(...charcoal);
         doc.setFont('helvetica', 'normal');
 
-        doc.text('📅', 25, yPos + 8);
-        doc.text(event.date, 35, yPos + 8);
+        doc.text('Date:', 25, yPos + 8);
+        doc.text(event.date, 42, yPos + 8);
 
-        doc.text('🕐', 25, yPos + 15);
-        doc.text(event.time, 35, yPos + 15);
+        doc.text('Time:', 25, yPos + 15);
+        doc.text(event.time, 42, yPos + 15);
 
-        doc.text('📍', 25, yPos + 22);
+        doc.text('Venue:', 25, yPos + 22);
         doc.setFont('helvetica', 'italic');
-        doc.text(event.venue, 35, yPos + 22, { maxWidth: 150 });
+        doc.text(event.venue, 42, yPos + 22, { maxWidth: 145 });
 
         // Map link
         doc.setTextColor(...roseGold);
         doc.setFont('helvetica', 'normal');
-        doc.textWithLink('View Location', 35, yPos + 29, { url: event.mapUrl });
+        doc.textWithLink('View Location', 42, yPos + 29, { url: event.mapUrl });
 
         // Baraat info after Wedding
         if (event.isMain) {
             doc.setFontSize(9);
             doc.setTextColor(...lightGray);
             doc.setFont('helvetica', 'italic');
-            doc.text('The Baraat will start from', 35, yPos + 35);
+            doc.text('The Baraat will start from', 42, yPos + 35);
             doc.setTextColor(...roseGold);
             doc.textWithLink('Hotel Kalevam', 85, yPos + 35, { url: 'https://maps.app.goo.gl/pYv4E5acdpbmrbwJ7' });
             doc.setTextColor(...lightGray);
@@ -290,9 +290,9 @@ function generatePDF() {
 
     // Bottom ornament
     yPos = 268;
-    doc.setFontSize(20);
+    doc.setFontSize(16);
     doc.setTextColor(...gold);
-    doc.text('❖', 105, yPos, { align: 'center' });
+    doc.text('*', 105, yPos, { align: 'center' });
 
     // Footer
     doc.setFontSize(10);
