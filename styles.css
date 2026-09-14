@@ -768,47 +768,29 @@ section {
    =================================== */
 
 .baraat-note {
-    grid-column: 1 / -1;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(255, 250, 240, 0.95) 100%);
-    border: 2px solid var(--gold);
-    border-radius: 15px;
-    padding: 20px 30px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-    margin-top: 10px;
+    font-family: var(--font-detail);
+    font-size: 1.05rem;
+    color: var(--charcoal);
+    margin-top: 25px;
+    margin-bottom: 0;
+    text-align: left;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
     position: relative;
     z-index: 2;
 }
 
-.baraat-icon {
-    font-size: 2rem;
-    flex-shrink: 0;
-}
-
-.baraat-text {
-    font-family: var(--font-detail);
-    font-size: 1.1rem;
-    color: var(--charcoal);
-    font-weight: 500;
-    margin: 0;
-    line-height: 1.5;
-}
-
 .baraat-link {
     color: var(--burgundy);
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 2px solid var(--rose-gold);
+    font-weight: 500;
+    text-decoration: underline;
     transition: var(--transition-fast);
 }
 
 .baraat-link:hover {
     color: var(--rose-gold);
-    border-bottom-color: var(--burgundy);
 }
 
 /* ===================================
@@ -919,17 +901,8 @@ section {
 
     /* Baraat note responsive */
     .baraat-note {
-        flex-direction: column;
-        gap: 10px;
-        padding: 18px 20px;
-    }
-
-    .baraat-text {
-        font-size: 1rem;
-    }
-
-    .baraat-icon {
-        font-size: 1.8rem;
+        font-size: 0.95rem;
+        margin-top: 20px;
     }
 
     .subtitle,
