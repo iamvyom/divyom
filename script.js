@@ -139,114 +139,125 @@ function initScrollAnimations() {
 }
 
 // ===================================
-// CALENDAR DOWNLOAD (.ics file)
+// PDF DOWNLOAD
 // ===================================
 
 function initCalendarDownload() {
-    const saveButton = document.getElementById('saveCalendar');
-    if (!saveButton) return;
+    const downloadButton = document.getElementById('downloadPDF');
+    if (!downloadButton) return;
 
-    saveButton.addEventListener('click', function() {
-        generateICSFile();
+    downloadButton.addEventListener('click', function() {
+        generatePDF();
     });
 }
 
-function generateICSFile() {
-    // Wedding event details
+function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Set colors
+    const burgundy = [128, 0, 32];
+    const roseGold = [183, 110, 121];
+    const charcoal = [44, 44, 44];
+
+    // Title
+    doc.setFontSize(28);
+    doc.setTextColor(...burgundy);
+    doc.text('Divya & Vyom', 105, 25, { align: 'center' });
+
+    doc.setFontSize(14);
+    doc.setTextColor(...roseGold);
+    doc.text('Wedding Invitation', 105, 35, { align: 'center' });
+
+    // Decorative line
+    doc.setDrawColor(...roseGold);
+    doc.setLineWidth(0.5);
+    doc.line(60, 42, 150, 42);
+
+    let yPos = 55;
+
+    // Events data
     const events = [
         {
-            title: 'Mehendi & Ladies Sangeet - Divya & Vyom',
-            location: 'Groom\'s Residence',
-            description: 'Mehendi and Ladies Sangeet Ceremony',
-            startDate: '20261202T190000', // 02 December 2026, 7:00 PM
-            endDate: '20261202T220000',   // Estimated end time: 10:00 PM
-            url: 'https://maps.app.goo.gl/SBqxN5LwQN7Aw73U9'
+            name: 'Mehendi & Ladies Sangeet',
+            date: '02 December 2026',
+            time: '7:00 PM onwards',
+            venue: 'Groom\'s Residence',
+            mapUrl: 'https://maps.app.goo.gl/SBqxN5LwQN7Aw73U9'
         },
         {
-            title: 'Haldi Ceremony - Divya & Vyom',
-            location: 'Groom\'s Residence',
-            description: 'Haldi Ceremony',
-            startDate: '20261203T110000', // 03 December 2026, 11:00 AM
-            endDate: '20261203T130000',   // Estimated end time: 1:00 PM
-            url: 'https://maps.app.goo.gl/SBqxN5LwQN7Aw73U9'
+            name: 'Haldi Ceremony',
+            date: '03 December 2026',
+            time: '11:00 AM onwards',
+            venue: 'Groom\'s Residence',
+            mapUrl: 'https://maps.app.goo.gl/SBqxN5LwQN7Aw73U9'
         },
         {
-            title: 'Wedding Ceremony - Divya & Vyom',
-            location: 'Virasat The Hotel by Triveni Grand',
-            description: 'Wedding Ceremony of Divya and Vyom',
-            startDate: '20261203T200000', // 03 December 2026, 8:00 PM
-            endDate: '20261203T230000',   // Estimated end time: 11:00 PM
-            url: 'https://maps.app.goo.gl/UJqbqB1jCZ6QDHg57'
+            name: 'Wedding Ceremony',
+            date: '03 December 2026',
+            time: '8:00 PM onwards',
+            venue: 'Virasat The Hotel by Triveni Grand',
+            mapUrl: 'https://maps.app.goo.gl/UJqbqB1jCZ6QDHg57'
         },
         {
-            title: 'Reception - Divya & Vyom',
-            location: 'Willow Wind Wedding Venue Lawn',
-            description: 'Wedding Reception',
-            startDate: '20261205T190000', // 05 December 2026, 7:00 PM
-            endDate: '20261205T220000',   // Estimated end time: 10:00 PM
-            url: 'https://maps.app.goo.gl/g3Ly8mXvgYLdkzoc6'
+            name: 'Reception',
+            date: '05 December 2026',
+            time: '7:00 PM onwards',
+            venue: 'Willow Wind Wedding Venue Lawn',
+            mapUrl: 'https://maps.app.goo.gl/g3Ly8mXvgYLdkzoc6'
         }
     ];
 
-    let icsContent = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//Divya & Vyom Wedding//EN',
-        'CALSCALE:GREGORIAN',
-        'METHOD:PUBLISH',
-        'X-WR-CALNAME:Divya & Vyom Wedding',
-        'X-WR-TIMEZONE:Asia/Kolkata'
-    ];
-
+    // Add each event
     events.forEach((event, index) => {
-        icsContent.push('BEGIN:VEVENT');
-        icsContent.push(`UID:${Date.now()}-${index}@wedding-invitation`);
-        icsContent.push(`DTSTAMP:${getCurrentTimestamp()}`);
-        icsContent.push(`DTSTART:${event.startDate}`);
-        icsContent.push(`DTEND:${event.endDate}`);
-        icsContent.push(`SUMMARY:${event.title}`);
-        icsContent.push(`DESCRIPTION:${event.description}`);
-        icsContent.push(`LOCATION:${event.location}`);
-        if (event.url) {
-            icsContent.push(`URL:${event.url}`);
+        doc.setFontSize(16);
+        doc.setTextColor(...burgundy);
+        doc.text(event.name, 20, yPos);
+
+        doc.setFontSize(11);
+        doc.setTextColor(...charcoal);
+        doc.text(`Date: ${event.date}`, 25, yPos + 8);
+        doc.text(`Time: ${event.time}`, 25, yPos + 15);
+        doc.text(`Venue: ${event.venue}`, 25, yPos + 22);
+
+        // Add map link as clickable
+        doc.setTextColor(...roseGold);
+        doc.textWithLink('View on Google Maps', 25, yPos + 29, { url: event.mapUrl });
+
+        yPos += 45;
+
+        // Add page break if needed
+        if (yPos > 250 && index < events.length - 1) {
+            doc.addPage();
+            yPos = 20;
         }
-        icsContent.push('STATUS:CONFIRMED');
-        icsContent.push('SEQUENCE:0');
-        // Add reminder: 1 day before
-        icsContent.push('BEGIN:VALARM');
-        icsContent.push('TRIGGER:-P1D');
-        icsContent.push('ACTION:DISPLAY');
-        icsContent.push(`DESCRIPTION:Reminder: ${event.title} tomorrow`);
-        icsContent.push('END:VALARM');
-        icsContent.push('END:VEVENT');
     });
 
-    icsContent.push('END:VCALENDAR');
+    // Add Baraat info after Wedding event
+    yPos = 55 + (45 * 2) + 35; // Position after wedding event
+    doc.setFontSize(10);
+    doc.setTextColor(...charcoal);
+    doc.text('The Baraat will start from Hotel Kalevam at 7:00 PM', 25, yPos);
+    doc.setTextColor(...roseGold);
+    doc.textWithLink('(View Hotel Kalevam)', 25, yPos + 6, { url: 'https://maps.app.goo.gl/pYv4E5acdpbmrbwJ7' });
 
-    // Create and download the .ics file
-    const icsFile = icsContent.join('\r\n');
-    const blob = new Blob([icsFile], { type: 'text/calendar;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'Divya-Vyom-Wedding.ics';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Footer
+    doc.setFontSize(10);
+    doc.setTextColor(...charcoal);
+    doc.text('We look forward to celebrating with you', 105, 280, { align: 'center' });
+
+    // Save the PDF
+    doc.save('Divya-Vyom-Wedding-Invitation.pdf');
 
     // Visual feedback
-    const originalText = saveButton.innerHTML;
-    saveButton.innerHTML = '<span>✓ Saved to Calendar!</span>';
-    saveButton.style.background = '#4CAF50';
+    const originalText = document.getElementById('downloadPDF').innerHTML;
+    document.getElementById('downloadPDF').innerHTML = '<span>✓ Downloaded!</span>';
+    document.getElementById('downloadPDF').style.background = '#4CAF50';
 
     setTimeout(() => {
-        saveButton.innerHTML = originalText;
-        saveButton.style.background = '';
+        document.getElementById('downloadPDF').innerHTML = originalText;
+        document.getElementById('downloadPDF').style.background = '';
     }, 2000);
-}
-
-function getCurrentTimestamp() {
-    const now = new Date();
-    return now.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 }
 
 // ===================================
