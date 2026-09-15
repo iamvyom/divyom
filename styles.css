@@ -687,7 +687,7 @@ section {
     position: absolute;
     color: var(--gold);
     font-size: 1rem;
-    top: -7px;
+    top: -12px;
 }
 
 .event-details::before {
@@ -697,7 +697,7 @@ section {
 
 .event-details::after {
     content: '❖';
-    bottom: -7px;
+    bottom: -12px;
     top: auto;
     left: 50%;
     transform: translateX(-50%) rotate(180deg);
