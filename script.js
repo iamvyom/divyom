@@ -230,11 +230,11 @@ function generatePDF() {
             doc.rect(18, yPos - 5, 174, 38, 'F');
         }
 
-        // Event name
+        // Event name with decorative characters
         doc.setFontSize(14);
         doc.setTextColor(...burgundy);
         doc.setFont('helvetica', 'bold');
-        doc.text(event.name, 105, yPos, { align: 'center' });
+        doc.text(`-: ${event.name} :-`, 105, yPos, { align: 'center' });
 
         // Event details with text labels
         doc.setFontSize(10);
