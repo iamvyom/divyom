@@ -206,11 +206,11 @@ function generatePDF() {
             mapUrl: 'https://maps.app.goo.gl/SBqxN5LwQN7Aw73U9'
         },
         {
-            name: 'Wedding Ceremony',
+            name: 'The Baraat',
             date: '03 December 2026',
-            time: '8:00 PM onwards',
-            venue: 'Virasat The Hotel by Triveni Grand',
-            mapUrl: 'https://maps.app.goo.gl/UJqbqB1jCZ6QDHg57',
+            time: '7:00 PM onwards',
+            venue: 'Hotel Kalevam',
+            mapUrl: 'https://maps.app.goo.gl/pYv4E5acdpbmrbwJ7',
             isMain: true
         },
         {
@@ -267,20 +267,14 @@ function generatePDF() {
             doc.setFont('helvetica', 'italic');
 
             // Break into parts to avoid spacing issues
-            const baaratText = 'The Baraat will start from ';
-            const timeText = ' at 7:00 PM';
+            const baaratText = 'The Baraat will be heading to ';
 
             doc.text(baaratText, 42, yPos + 35);
 
             // Calculate position for hotel link
             const baaratTextWidth = doc.getTextWidth(baaratText);
             doc.setTextColor(...roseGold);
-            doc.textWithLink('Hotel Kalevam', 42 + baaratTextWidth, yPos + 35, { url: 'https://maps.app.goo.gl/pYv4E5acdpbmrbwJ7' });
-
-            // Calculate position for time text
-            const hotelTextWidth = doc.getTextWidth('Hotel Kalevam');
-            doc.setTextColor(...lightGray);
-            doc.text(timeText, 42 + baaratTextWidth + hotelTextWidth, yPos + 35);
+            doc.textWithLink('Virasat The Hotel', 42 + baaratTextWidth, yPos + 35, { url: 'https://maps.app.goo.gl/UJqbqB1jCZ6QDHg57' });
         }
 
         yPos += event.isMain ? 50 : 42;
