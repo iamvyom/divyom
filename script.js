@@ -234,7 +234,7 @@ function generatePDF() {
         doc.setFontSize(14);
         doc.setTextColor(...burgundy);
         doc.setFont('helvetica', 'bold');
-        doc.text(`-: ${event.name} :-`, 105, yPos, { align: 'center' });
+        doc.text(`-:${event.name}:-`, 105, yPos, { align: 'center' });
 
         // Event details with text labels
         doc.setFontSize(10);
