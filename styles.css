@@ -121,7 +121,7 @@ body {
     color: var(--burgundy);
     border: none;
     border-radius: 20px;
-    padding: 35px 45px;
+    padding: 35px 25px;
     font-family: var(--font-display);
     cursor: pointer;
     box-shadow:
@@ -144,17 +144,17 @@ body {
     position: absolute;
     left: -8px;
     right: -8px;
-    height: 15px;
+    height: 8px;
     background: linear-gradient(90deg, #6B0020 0%, var(--burgundy) 50%, #6B0020 100%);
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 .start-button::before {
-    top: -5px;
+    top: -3px;
 }
 
 .start-button::after {
-    bottom: -5px;
+    bottom: -3px;
 }
 
 .start-button:hover {
@@ -166,8 +166,8 @@ body {
 }
 
 .button-ganesh {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     margin-bottom: 5px;
 }
 
