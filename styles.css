@@ -568,6 +568,67 @@ body {
     }
 }
 
+/* Falling Petals */
+.petal {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(ellipse at center, #FFA500 0%, #FF8C00 50%, #FF6B00 100%);
+    border-radius: 50% 0 50% 0;
+    opacity: 0;
+    z-index: 1;
+    animation: fall linear infinite;
+}
+
+.petal-1 {
+    left: 20%;
+    animation-duration: 12s;
+    animation-delay: 0s;
+}
+
+.petal-2 {
+    left: 60%;
+    animation-duration: 15s;
+    animation-delay: 5s;
+}
+
+.petal-3 {
+    left: 85%;
+    animation-duration: 13s;
+    animation-delay: 8s;
+}
+
+.petal-4 {
+    left: 30%;
+    animation-duration: 14s;
+    animation-delay: 3s;
+}
+
+.petal-5 {
+    left: 75%;
+    animation-duration: 16s;
+    animation-delay: 9s;
+}
+
+@keyframes fall {
+    0% {
+        top: -10%;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        top: 110%;
+        opacity: 0;
+        transform: translateX(100px) rotate(360deg);
+    }
+}
+
 /* ===================================
    CONTAINER & SECTIONS
    =================================== */
@@ -1063,6 +1124,12 @@ section {
     .sparkle-4 {
         top: 43%;
         right: 12%;
+    }
+
+    /* Smaller petals on mobile */
+    .petal {
+        width: 10px;
+        height: 10px;
     }
 
     .subtitle,
