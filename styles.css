@@ -121,7 +121,7 @@ body {
     color: var(--burgundy);
     border: none;
     border-radius: 20px;
-    padding: 35px 25px;
+    padding: 35px 15px;
     font-family: var(--font-display);
     cursor: pointer;
     box-shadow:
@@ -166,8 +166,8 @@ body {
 }
 
 .button-ganesh {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     margin-bottom: 5px;
 }
 
