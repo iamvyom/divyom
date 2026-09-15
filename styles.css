@@ -1045,7 +1045,7 @@ section {
 
 .event-name {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--burgundy);
     margin-bottom: 15px;
     font-weight: 700;
@@ -1373,7 +1373,7 @@ section {
     }
 
     .event-name {
-        font-size: 1.4rem;
+        font-size: 1.7rem;
         margin-bottom: 12px;
         font-weight: 700;
     }
@@ -1448,7 +1448,7 @@ section {
     }
 
     .event-name {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         margin-bottom: 8px;
         font-weight: 700;
     }
