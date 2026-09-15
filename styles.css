@@ -104,11 +104,115 @@ body {
     align-items: center;
     justify-content: center;
     transition: opacity 0.8s ease, visibility 0.8s ease;
+    overflow: hidden;
 }
 
 .start-overlay.hidden {
     opacity: 0;
     visibility: hidden;
+}
+
+/* Falling Petals for Start Overlay */
+.overlay-petal {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+    border-radius: 50% 0;
+    opacity: 0;
+    pointer-events: none;
+    animation: overlay-fall 12s linear infinite;
+}
+
+@keyframes overlay-fall {
+    0% {
+        top: -10%;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        top: 110%;
+        opacity: 0;
+        transform: translateX(100px) rotate(360deg);
+    }
+}
+
+.overlay-petal-1 {
+    left: 8%;
+    animation-delay: 0s;
+    animation-duration: 10s;
+}
+
+.overlay-petal-2 {
+    left: 18%;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.overlay-petal-3 {
+    left: 28%;
+    animation-delay: 4s;
+    animation-duration: 11s;
+}
+
+.overlay-petal-4 {
+    left: 38%;
+    animation-delay: 1s;
+    animation-duration: 13s;
+}
+
+.overlay-petal-5 {
+    left: 48%;
+    animation-delay: 5s;
+    animation-duration: 10s;
+}
+
+.overlay-petal-6 {
+    left: 58%;
+    animation-delay: 3s;
+    animation-duration: 14s;
+}
+
+.overlay-petal-7 {
+    left: 68%;
+    animation-delay: 0.5s;
+    animation-duration: 11s;
+}
+
+.overlay-petal-8 {
+    left: 78%;
+    animation-delay: 4.5s;
+    animation-duration: 12s;
+}
+
+.overlay-petal-9 {
+    left: 88%;
+    animation-delay: 2.5s;
+    animation-duration: 13s;
+}
+
+.overlay-petal-10 {
+    left: 15%;
+    animation-delay: 6s;
+    animation-duration: 10s;
+}
+
+.overlay-petal-11 {
+    left: 45%;
+    animation-delay: 7s;
+    animation-duration: 11s;
+}
+
+.overlay-petal-12 {
+    left: 75%;
+    animation-delay: 3.5s;
+    animation-duration: 12s;
 }
 
 .start-content {
@@ -117,52 +221,56 @@ body {
 
 .start-button {
     position: relative;
-    background: linear-gradient(135deg, #FFF8E7 0%, #F5E6D3 100%);
+    background: linear-gradient(135deg, #FFE8E8 0%, #FFF0E8 100%);
     color: var(--burgundy);
     border: none;
-    border-radius: 20px;
-    padding: 25px 20px;
+    border-radius: 30px;
+    padding: 35px 30px;
     font-family: var(--font-display);
     cursor: pointer;
     box-shadow:
-        0 8px 30px rgba(128, 0, 32, 0.3),
-        inset 0 2px 0 rgba(255, 255, 255, 0.5),
-        inset 0 -2px 0 rgba(128, 0, 32, 0.2);
+        0 10px 35px rgba(183, 110, 121, 0.4),
+        inset 0 2px 15px rgba(255, 255, 255, 0.8),
+        inset 0 -2px 10px rgba(128, 0, 32, 0.1);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     animation: pulse 2s ease-in-out infinite;
-    border-left: 8px solid var(--burgundy);
-    border-right: 8px solid var(--burgundy);
+    border-left: 12px solid var(--burgundy);
+    border-right: 12px solid var(--burgundy);
+    width: 300px;
 }
 
 .start-button::before,
 .start-button::after {
     content: '';
     position: absolute;
-    left: -8px;
-    right: -8px;
-    height: 8px;
-    background: linear-gradient(90deg, #6B0020 0%, var(--burgundy) 50%, #6B0020 100%);
-    border-radius: 6px;
+    left: -12px;
+    right: -12px;
+    height: 25px;
+    background: radial-gradient(ellipse at center, var(--burgundy) 0%, #6B0020 100%);
+    border-radius: 50%;
+    box-shadow:
+        inset 0 2px 8px rgba(0, 0, 0, 0.3),
+        0 2px 8px rgba(128, 0, 32, 0.3);
 }
 
 .start-button::before {
-    top: -3px;
+    top: -12px;
 }
 
 .start-button::after {
-    bottom: -3px;
+    bottom: -12px;
 }
 
 .start-button:hover {
     transform: scale(1.05);
     box-shadow:
-        0 12px 40px rgba(128, 0, 32, 0.4),
-        inset 0 2px 0 rgba(255, 255, 255, 0.6),
-        inset 0 -2px 0 rgba(128, 0, 32, 0.3);
+        0 15px 45px rgba(183, 110, 121, 0.5),
+        inset 0 2px 20px rgba(255, 255, 255, 0.9),
+        inset 0 -2px 15px rgba(128, 0, 32, 0.2);
 }
 
 .button-icon-row {
@@ -175,8 +283,8 @@ body {
 }
 
 .button-ganesh {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     margin-bottom: 0;
 }
 
@@ -187,10 +295,28 @@ body {
 }
 
 .button-swastik {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
     opacity: 0.9;
+}
+
+.button-mantra {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.button-click {
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    opacity: 0.8;
+    letter-spacing: 1px;
 }
 
 .button-mantra {
