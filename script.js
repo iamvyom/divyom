@@ -192,7 +192,7 @@ function generatePDF() {
     // Events data
     const events = [
         {
-            name: 'Mehendi & Ladies Sangeet',
+            name: 'Mehendi & Sangeet',
             date: '02 December 2026',
             time: '7:00 PM onwards',
             venue: 'Groom\'s Residence',
