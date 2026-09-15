@@ -1033,7 +1033,7 @@ section {
 }
 
 .map-button:hover svg {
-    transform: translateX(3px);
+    transform: scale(1.1);
 }
 
 /* ===================================
@@ -1120,7 +1120,7 @@ section {
     font-family: var(--font-detail);
     color: rgba(255, 255, 255, 0.8);
     font-size: 1rem;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .decorative-hearts {
@@ -1396,6 +1396,33 @@ section {
 
     .message-heart {
         font-size: 2rem;
+    }
+
+    /* Scroll button responsive */
+    .start-button {
+        padding: 20px 15px;
+    }
+
+    .button-icon-row {
+        gap: 10px;
+    }
+
+    .button-ganesh {
+        width: 80px;
+        height: 80px;
+    }
+
+    .button-swastik {
+        width: 28px;
+        height: 28px;
+    }
+
+    .button-mantra {
+        font-size: 1.1rem;
+    }
+
+    .button-click {
+        font-size: 0.9rem;
     }
 }
 
