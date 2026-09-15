@@ -1168,32 +1168,33 @@ section {
    BARAAT INFORMATION NOTE
    =================================== */
 
-.baraat-note {
+/* Baraat inline note inside tile */
+.baraat-note-inline {
     font-family: var(--font-detail);
-    font-size: 1.05rem;
+    font-size: 0.85rem;
     color: var(--charcoal);
-    margin-top: 25px;
-    margin-bottom: 0;
-    text-align: left;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
-    position: relative;
-    z-index: 2;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.4;
 }
 
-.baraat-map-icon {
+.baraat-link-inline {
+    color: var(--burgundy);
+    text-decoration: none;
+    font-weight: 700;
     display: inline-flex;
     align-items: center;
-    margin-left: 8px;
-    color: var(--burgundy);
+    gap: 4px;
     transition: var(--transition-fast);
 }
 
-.baraat-map-icon:hover {
+.baraat-link-inline:hover {
     color: var(--rose-gold);
-    transform: scale(1.1);
+}
+
+.baraat-link-inline svg {
+    vertical-align: middle;
 }
 
 /* ===================================
