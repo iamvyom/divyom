@@ -121,7 +121,7 @@ body {
     color: var(--burgundy);
     border: none;
     border-radius: 20px;
-    padding: 25px 10px;
+    padding: 25px 20px;
     font-family: var(--font-display);
     cursor: pointer;
     box-shadow:
@@ -165,16 +165,32 @@ body {
         inset 0 -2px 0 rgba(128, 0, 32, 0.3);
 }
 
+.button-icon-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
+}
+
 .button-ganesh {
     width: 100px;
     height: 100px;
-    margin-bottom: 5px;
+    margin-bottom: 0;
 }
 
 .button-ganesh img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.button-swastik {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    opacity: 0.9;
 }
 
 .button-mantra {
