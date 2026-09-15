@@ -442,6 +442,133 @@ body {
 }
 
 /* ===================================
+   DECORATIVE ANIMATIONS
+   =================================== */
+
+/* Floating Diyas */
+.diya {
+    position: absolute;
+    bottom: 30px;
+    width: 40px;
+    height: 30px;
+    z-index: 3;
+    animation: float-diya 4s ease-in-out infinite;
+}
+
+.diya-left {
+    left: 40px;
+    animation-delay: 0s;
+}
+
+.diya-right {
+    right: 40px;
+    animation-delay: 2s;
+}
+
+.diya::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 15px;
+    background: linear-gradient(to bottom, #8B4513, #D2691E);
+    border-radius: 0 0 50% 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.diya-flame {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 12px;
+    background: linear-gradient(to top, #FFD700, #FF6B00, #FFD700);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow:
+        0 0 10px rgba(255, 165, 0, 0.8),
+        0 0 20px rgba(255, 140, 0, 0.5);
+    animation: flicker 1.5s ease-in-out infinite;
+}
+
+@keyframes float-diya {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+    25% {
+        opacity: 0.8;
+        transform: translateX(-50%) scale(0.95);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.05);
+    }
+    75% {
+        opacity: 0.9;
+        transform: translateX(-50%) scale(0.98);
+    }
+}
+
+/* Gold Sparkles */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--gold), 0 0 12px var(--gold);
+    z-index: 2;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+.sparkle-1 {
+    top: 35%;
+    left: 30%;
+    animation-delay: 0s;
+}
+
+.sparkle-2 {
+    top: 40%;
+    right: 28%;
+    animation-delay: 0.8s;
+}
+
+.sparkle-3 {
+    top: 50%;
+    left: 25%;
+    animation-delay: 1.5s;
+}
+
+.sparkle-4 {
+    top: 48%;
+    right: 23%;
+    animation-delay: 2.2s;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===================================
    CONTAINER & SECTIONS
    =================================== */
 
@@ -889,6 +1016,53 @@ section {
     .baraat-note {
         font-size: 0.95rem;
         margin-top: 20px;
+    }
+
+    /* Smaller diyas on mobile */
+    .diya {
+        width: 30px;
+        height: 22px;
+        bottom: 20px;
+    }
+
+    .diya-left {
+        left: 20px;
+    }
+
+    .diya-right {
+        right: 20px;
+    }
+
+    .diya::before {
+        width: 22px;
+        height: 11px;
+    }
+
+    .diya-flame {
+        width: 6px;
+        height: 10px;
+        top: -6px;
+    }
+
+    /* Adjust sparkle positions for mobile */
+    .sparkle-1 {
+        top: 30%;
+        left: 15%;
+    }
+
+    .sparkle-2 {
+        top: 35%;
+        right: 15%;
+    }
+
+    .sparkle-3 {
+        top: 45%;
+        left: 12%;
+    }
+
+    .sparkle-4 {
+        top: 43%;
+        right: 12%;
     }
 
     .subtitle,
