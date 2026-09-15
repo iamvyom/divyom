@@ -673,7 +673,7 @@ section {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 250, 240, 0.95) 100%);
     border: 2px solid var(--gold);
     border-radius: 15px;
-    padding: 12px 6%;
+    padding: 10px 6%;
     box-shadow:
         0 4px 15px rgba(212, 175, 55, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.8),
@@ -687,7 +687,7 @@ section {
     position: absolute;
     color: var(--gold);
     font-size: 1rem;
-    top: -4px;
+    top: -2px;
 }
 
 .event-details::before {
@@ -697,7 +697,7 @@ section {
 
 .event-details::after {
     content: '❖';
-    bottom: -4px;
+    bottom: -2px;
     top: auto;
     left: 50%;
     transform: translateX(-50%) rotate(180deg);
