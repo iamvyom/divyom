@@ -1171,7 +1171,7 @@ section {
 /* Baraat inline note inside tile */
 .baraat-note-inline {
     font-family: var(--font-detail);
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     color: var(--charcoal);
     margin-top: 10px;
     text-align: center;
