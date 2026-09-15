@@ -524,47 +524,47 @@ body {
 /* Gold Sparkles */
 .sparkle {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
     background: var(--gold);
     border-radius: 50%;
-    box-shadow: 0 0 6px var(--gold), 0 0 12px var(--gold);
-    z-index: 2;
-    animation: twinkle 3s ease-in-out infinite;
+    box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold);
+    z-index: 3;
+    animation: twinkle 2.5s ease-in-out infinite;
 }
 
 .sparkle-1 {
-    top: 35%;
-    left: 30%;
+    top: 38%;
+    left: 35%;
     animation-delay: 0s;
 }
 
 .sparkle-2 {
-    top: 40%;
-    right: 28%;
-    animation-delay: 0.8s;
+    top: 42%;
+    right: 33%;
+    animation-delay: 0.7s;
 }
 
 .sparkle-3 {
-    top: 50%;
-    left: 25%;
-    animation-delay: 1.5s;
+    top: 52%;
+    left: 32%;
+    animation-delay: 1.3s;
 }
 
 .sparkle-4 {
-    top: 48%;
-    right: 23%;
-    animation-delay: 2.2s;
+    top: 50%;
+    right: 30%;
+    animation-delay: 1.9s;
 }
 
 @keyframes twinkle {
     0%, 100% {
         opacity: 0;
-        transform: scale(0);
+        transform: scale(0.5);
     }
     50% {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1.2);
     }
 }
 
@@ -608,6 +608,18 @@ body {
     left: 75%;
     animation-duration: 16s;
     animation-delay: 9s;
+}
+
+.petal-6 {
+    left: 45%;
+    animation-duration: 13.5s;
+    animation-delay: 2s;
+}
+
+.petal-7 {
+    left: 55%;
+    animation-duration: 14.5s;
+    animation-delay: 6s;
 }
 
 @keyframes fall {
@@ -1107,23 +1119,23 @@ section {
 
     /* Adjust sparkle positions for mobile */
     .sparkle-1 {
-        top: 30%;
-        left: 15%;
+        top: 32%;
+        left: 18%;
     }
 
     .sparkle-2 {
-        top: 35%;
-        right: 15%;
+        top: 37%;
+        right: 18%;
     }
 
     .sparkle-3 {
-        top: 45%;
-        left: 12%;
+        top: 47%;
+        left: 15%;
     }
 
     .sparkle-4 {
-        top: 43%;
-        right: 12%;
+        top: 45%;
+        right: 15%;
     }
 
     /* Smaller petals on mobile */
