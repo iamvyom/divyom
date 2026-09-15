@@ -687,7 +687,7 @@ section {
     position: absolute;
     color: var(--gold);
     font-size: 1rem;
-    top: -10px;
+    top: -7px;
 }
 
 .event-details::before {
@@ -697,7 +697,7 @@ section {
 
 .event-details::after {
     content: '❖';
-    bottom: -10px;
+    bottom: -7px;
     top: auto;
     left: 50%;
     transform: translateX(-50%) rotate(180deg);
@@ -858,6 +858,13 @@ section {
 /* ===================================
    RESPONSIVE DESIGN
    =================================== */
+
+/* Desktop - reduce scroll width */
+@media (min-width: 969px) {
+    .event-details {
+        padding: 12px 4%;
+    }
+}
 
 @media (max-width: 968px) {
     .events-grid {
