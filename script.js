@@ -176,11 +176,11 @@ function generatePDF() {
     doc.setFont('helvetica', 'bold');
     doc.text('Divya & Vyom', 105, 32, { align: 'center' });
 
-    // Subtitle
+    // Subtitle - proper capitalization
     doc.setFontSize(12);
     doc.setTextColor(...roseGold);
     doc.setFont('helvetica', 'italic');
-    doc.text('request the pleasure of your company', 105, 43, { align: 'center' });
+    doc.text('Request the Pleasure of Your Company', 105, 43, { align: 'center' });
 
     // Decorative line
     doc.setDrawColor(...gold);
@@ -236,7 +236,7 @@ function generatePDF() {
         doc.setFont('helvetica', 'bold');
         doc.text(event.name, 105, yPos, { align: 'center' });
 
-        // Event details with text labels instead of emojis
+        // Event details with text labels
         doc.setFontSize(10);
         doc.setTextColor(...charcoal);
         doc.setFont('helvetica', 'normal');
@@ -248,33 +248,49 @@ function generatePDF() {
         doc.text(event.time, 42, yPos + 15);
 
         doc.text('Venue:', 25, yPos + 22);
+
+        // Make venue name clickable
         doc.setFont('helvetica', 'italic');
-        doc.text(event.venue, 42, yPos + 22, { maxWidth: 145 });
-
-        // Map link
         doc.setTextColor(...roseGold);
-        doc.setFont('helvetica', 'normal');
-        doc.textWithLink('View Location', 42, yPos + 29, { url: event.mapUrl });
+        doc.textWithLink(event.venue, 42, yPos + 22, { url: event.mapUrl, maxWidth: 145 });
 
-        // Baraat info after Wedding
+        // View Location link (keeping for clarity)
+        doc.setTextColor(...lightGray);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.text('(click venue to view on map)', 42, yPos + 29);
+
+        // Baraat info after Wedding - fixed spacing
         if (event.isMain) {
             doc.setFontSize(9);
             doc.setTextColor(...lightGray);
             doc.setFont('helvetica', 'italic');
-            doc.text('The Baraat will start from', 42, yPos + 35);
+
+            // Break into parts to avoid spacing issues
+            const baaratText = 'The Baraat will start from ';
+            const timeText = ' at 7:00 PM';
+
+            doc.text(baaratText, 42, yPos + 35);
+
+            // Calculate position for hotel link
+            const baaratTextWidth = doc.getTextWidth(baaratText);
             doc.setTextColor(...roseGold);
-            doc.textWithLink('Hotel Kalevam', 85, yPos + 35, { url: 'https://maps.app.goo.gl/pYv4E5acdpbmrbwJ7' });
+            doc.textWithLink('Hotel Kalevam', 42 + baaratTextWidth, yPos + 35, { url: 'https://maps.app.goo.gl/pYv4E5acdpbmrbwJ7' });
+
+            // Calculate position for time text
+            const hotelTextWidth = doc.getTextWidth('Hotel Kalevam');
             doc.setTextColor(...lightGray);
-            doc.text('at 7:00 PM', 110, yPos + 35);
+            doc.text(timeText, 42 + baaratTextWidth + hotelTextWidth, yPos + 35);
         }
 
         yPos += event.isMain ? 50 : 42;
 
-        // Divider line between events
+        // Divider line between events with extra spacing after
         if (index < events.length - 1) {
             doc.setDrawColor(...gold);
             doc.setLineWidth(0.3);
             doc.line(30, yPos - 5, 180, yPos - 5);
+            yPos += 5; // Add blank space after divider
         }
     });
 
