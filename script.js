@@ -154,8 +154,8 @@ function initCalendarDownload() {
 function downloadInvitationImage() {
     // Create a temporary link element
     const link = document.createElement('a');
-    link.href = 'assets/wedding-invitation.png';
-    link.download = 'Divya-Vyom-Wedding-Invitation.png';
+    link.href = 'assets/wedding-invitation.pdf';
+    link.download = 'Divya-Vyom-Wedding-Invitation.pdf';
 
     // Trigger download
     document.body.appendChild(link);
