@@ -152,41 +152,26 @@ function initCalendarDownload() {
 }
 
 function downloadInvitationImage() {
-    // Fetch the image and force download
-    fetch('assets/wedding-invitation.png')
-        .then(response => response.blob())
-        .then(blob => {
-            // Create blob URL
-            const blobUrl = window.URL.createObjectURL(blob);
+    // Create a temporary link element
+    const link = document.createElement('a');
+    link.href = 'assets/wedding-invitation.png';
+    link.download = 'Divya-Vyom-Wedding-Invitation.png';
 
-            // Create temporary link
-            const link = document.createElement('a');
-            link.href = blobUrl;
-            link.download = 'Divya-Vyom-Wedding-Invitation.png';
+    // Trigger download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
-            // Trigger download
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+    // Visual feedback
+    const button = document.getElementById('downloadPDF');
+    const originalHTML = button.innerHTML;
+    button.innerHTML = '<span>✓ Downloaded!</span>';
+    button.style.opacity = '0.8';
 
-            // Clean up blob URL
-            window.URL.revokeObjectURL(blobUrl);
-
-            // Visual feedback
-            const button = document.getElementById('downloadPDF');
-            const originalHTML = button.innerHTML;
-            button.innerHTML = '<span>✓ Downloaded!</span>';
-            button.style.opacity = '0.8';
-
-            setTimeout(() => {
-                button.innerHTML = originalHTML;
-                button.style.opacity = '1';
-            }, 2000);
-        })
-        .catch(error => {
-            console.error('Download failed:', error);
-            alert('Download failed. Please try again.');
-        });
+    setTimeout(() => {
+        button.innerHTML = originalHTML;
+        button.style.opacity = '1';
+    }, 2000);
 }
 
 // ===================================
