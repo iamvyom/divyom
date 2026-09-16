@@ -139,7 +139,7 @@ function initScrollAnimations() {
 }
 
 // ===================================
-// PDF DOWNLOAD
+// IMAGE DOWNLOAD
 // ===================================
 
 function initCalendarDownload() {
@@ -147,155 +147,20 @@ function initCalendarDownload() {
     if (!downloadButton) return;
 
     downloadButton.addEventListener('click', function() {
-        generatePDF();
+        downloadInvitationImage();
     });
 }
 
-function generatePDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+function downloadInvitationImage() {
+    // Create a temporary link element
+    const link = document.createElement('a');
+    link.href = 'assets/wedding-invitation.png';
+    link.download = 'Divya-Vyom-Wedding-Invitation.png';
 
-    // Set colors
-    const burgundy = [128, 0, 32];
-    const roseGold = [183, 110, 121];
-    const gold = [212, 175, 55];
-    const charcoal = [44, 44, 44];
-    const lightGray = [107, 107, 107];
-
-    // Add decorative border
-    doc.setDrawColor(...roseGold);
-    doc.setLineWidth(1.5);
-    doc.rect(10, 10, 190, 277);
-
-    doc.setLineWidth(0.5);
-    doc.rect(13, 13, 184, 271);
-
-    // Title
-    doc.setFontSize(32);
-    doc.setTextColor(...burgundy);
-    doc.setFont('helvetica', 'bold');
-    doc.text('Divya & Vyom', 105, 32, { align: 'center' });
-
-    // Subtitle - proper capitalization
-    doc.setFontSize(12);
-    doc.setTextColor(...roseGold);
-    doc.setFont('helvetica', 'italic');
-    doc.text('Request the Pleasure of Your Company', 105, 43, { align: 'center' });
-
-    // Decorative line
-    doc.setDrawColor(...gold);
-    doc.setLineWidth(0.8);
-    doc.line(50, 52, 160, 52);
-
-    let yPos = 68;
-
-    // Events data
-    const events = [
-        {
-            name: 'Mehendi & Sangeet',
-            date: '02 December 2026',
-            time: '7:00 PM onwards',
-            venue: 'Groom\'s Residence',
-            mapUrl: 'https://maps.app.goo.gl/SBqxN5LwQN7Aw73U9'
-        },
-        {
-            name: 'Haldi Ceremony',
-            date: '03 December 2026',
-            time: '11:00 AM onwards',
-            venue: 'Groom\'s Residence',
-            mapUrl: 'https://maps.app.goo.gl/SBqxN5LwQN7Aw73U9'
-        },
-        {
-            name: 'The Baraat',
-            date: '03 December 2026',
-            time: '7:00 PM onwards',
-            venue: 'Hotel Kalevam',
-            mapUrl: 'https://maps.app.goo.gl/pYv4E5acdpbmrbwJ7',
-            isMain: true
-        },
-        {
-            name: 'Reception',
-            date: '05 December 2026',
-            time: '7:00 PM onwards',
-            venue: 'Willow Wind Wedding Venue Lawn',
-            mapUrl: 'https://maps.app.goo.gl/g3Ly8mXvgYLdkzoc6'
-        }
-    ];
-
-    // Add each event
-    events.forEach((event, index) => {
-        // Event box background (subtle) for main event
-        if (event.isMain) {
-            doc.setFillColor(250, 245, 240);
-            doc.rect(18, yPos - 5, 174, 38, 'F');
-        }
-
-        // Event name with decorative characters
-        doc.setFontSize(14);
-        doc.setTextColor(...burgundy);
-        doc.setFont('helvetica', 'bold');
-        doc.text(`-:${event.name}:-`, 105, yPos, { align: 'center' });
-
-        // Event details with text labels
-        doc.setFontSize(10);
-        doc.setTextColor(...charcoal);
-        doc.setFont('helvetica', 'normal');
-
-        doc.text('Date:', 25, yPos + 8);
-        doc.text(event.date, 42, yPos + 8);
-
-        doc.text('Time:', 25, yPos + 15);
-        doc.text(event.time, 42, yPos + 15);
-
-        doc.text('Venue:', 25, yPos + 22);
-
-        // Make venue name clickable
-        doc.setFont('helvetica', 'italic');
-        doc.setTextColor(...roseGold);
-        doc.textWithLink(event.venue, 42, yPos + 22, { url: event.mapUrl, maxWidth: 145 });
-
-        // View Location link (keeping for clarity)
-        doc.setTextColor(...lightGray);
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(9);
-        doc.text('(click venue to view on map)', 42, yPos + 29);
-
-        // Baraat info after Wedding - fixed spacing
-        if (event.isMain) {
-            doc.setFontSize(9);
-            doc.setTextColor(...lightGray);
-            doc.setFont('helvetica', 'italic');
-
-            // Break into parts to avoid spacing issues
-            const baaratText = 'The Baraat will be heading to ';
-
-            doc.text(baaratText, 42, yPos + 35);
-
-            // Calculate position for hotel link
-            const baaratTextWidth = doc.getTextWidth(baaratText);
-            doc.setTextColor(...roseGold);
-            doc.textWithLink('Virasat The Hotel', 42 + baaratTextWidth, yPos + 35, { url: 'https://maps.app.goo.gl/UJqbqB1jCZ6QDHg57' });
-        }
-
-        yPos += event.isMain ? 50 : 42;
-
-        // Divider line between events with extra spacing after
-        if (index < events.length - 1) {
-            doc.setDrawColor(...gold);
-            doc.setLineWidth(0.3);
-            doc.line(30, yPos - 5, 180, yPos - 5);
-            yPos += 5; // Add blank space after divider
-        }
-    });
-
-    // Footer
-    doc.setFontSize(10);
-    doc.setTextColor(...charcoal);
-    doc.setFont('helvetica', 'italic');
-    doc.text('We look forward to celebrating with you', 105, 275, { align: 'center' });
-
-    // Save the PDF
-    doc.save('Divya-Vyom-Wedding-Invitation.pdf');
+    // Trigger download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
     // Visual feedback
     const button = document.getElementById('downloadPDF');
